@@ -23,7 +23,10 @@ browser.menus.create({
         tabIds: createdTabs.map((t) => t.id),
       });
 
-      browser.tabGroups.update(groupId, { title: btNode.title });
+      browser.tabGroups.update(groupId, {
+        title: btNode.title,
+        collapsed: true,
+      });
     }
   },
 });

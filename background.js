@@ -10,10 +10,14 @@ browser.menus.create({
     const [btNode] = await browser.bookmarks.get(info.bookmarkId);
     const createdTabs = [];
     if (typeof btNode.url === "string") {
-      createdTabs.push(await browser.tabs.create({ url: btNode.url }));
+      createdTabs.push(
+        await browser.tabs.create({ url: btNode.url, active: false }),
+      );
     } else {
       for (const c of await browser.bookmarks.getChildren(btNode.id)) {
-        createdTabs.push(await browser.tabs.create({ url: c.url }));
+        createdTabs.push(
+          await browser.tabs.create({ url: c.url, active: false }),
+        );
       }
     }
     if (createdTabs.length > 0) {

@@ -17,11 +17,13 @@ browser.menus.create({
       }
     }
     if (createdTabs.length > 0) {
-      browser.tabs.group({
+      const groupId = await browser.tabs.group({
         // tbd. set name as soon as the option is available
         // ref. https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/group
         tabIds: createdTabs.map((t) => t.id),
       });
+
+      browser.tabGroups.update(groupId, { title: btNode.title });
     }
   },
 });
